@@ -39,8 +39,8 @@ module CandyCheck
       # @param product_ids [Array<String>] optional: products to filter
       # @return [ReceiptCollection] if successful
       # @return [Verification] otherwise
-      def verify_subscription(receipt_data, secret = nil, product_ids = nil)
-        args = [receipt_data, secret, product_ids]
+      def verify_subscription(receipt_data, secret = nil, product_ids = nil, bundle_id = nil)
+        args = [receipt_data, secret, product_ids, bundle_id]
         fetch_receipt_information(SubscriptionVerification, args)
       end
 

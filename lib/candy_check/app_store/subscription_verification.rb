@@ -12,10 +12,12 @@ module CandyCheck
         endpoint_url,
         receipt_data,
         secret = nil,
-        product_ids = nil
+        product_ids = nil,
+        bundle_id = nil
       )
         super(endpoint_url, receipt_data, secret)
         @product_ids = product_ids
+        @bundle_id = bundle_id
       end
 
       # Performs the verification against the remote server
@@ -43,7 +45,7 @@ module CandyCheck
 
       def valid?
         status_is_ok = @response["status"] == STATUS_OK
-        @response && status_is_ok && @response["latest_receipt_info"]
+        @response && status_is_ok && @response["latest_receipt_info"] && @response["receipt"]["bundle_id"] == @bundle_id
       end
     end
   end
